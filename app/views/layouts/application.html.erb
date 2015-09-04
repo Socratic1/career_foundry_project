@@ -9,12 +9,18 @@
   <!-- Custon JS and CSS -->
   <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track' => true %>
   <%= javascript_include_tag 'application', 'data-turbolinks-track' => true %>
+  <!-- Imported Fonts -->
+  <link href='https://fonts.googleapis.com/css?family=Titillium+Web' rel='stylesheet' type='text/css'>
   <%= csrf_meta_tags %>
 </head>
 <body>
 
 <h1>Welcome to Bike Berlin</h1>
 <h2>Your source for used bikes in Berlin</h2>
+
+<div class="image">
+	<%= image_tag("racebike.jpg") %>
+</div>
 
 <%= yield %>
 

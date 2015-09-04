@@ -5,5 +5,29 @@
 h1 {
 	text-align: center;
 	color: blue;
-	font-family: helvettica, sans-serif;
+	font-family: 'Titillium Web', helvettica, sans-serif;
+	font-style: italic;
 }
+
+h2 {
+	text-align: center;
+	padding-top: 10px
+}
+
+.image {
+	img {
+		position: relative;
+		top: 40px;
+		margin-left: auto;
+		margin-right: auto;
+		display: block;
+	}
+}
+
+/* typography */
+h1 {
+	color: blue;
+	font-family: 'Titillium Web', helvettica, sans-serif;
+	font-style: italic; 
+}
+
