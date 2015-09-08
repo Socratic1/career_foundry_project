@@ -3,7 +3,7 @@ class StaticPagesController < ApplicationController
   end
 
   def landing_page
-  	@featured_produce = Product.first
+  	@featured_product = Product.first
   end
 
 end
