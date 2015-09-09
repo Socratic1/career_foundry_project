@@ -1,0 +1,13 @@
+<div class="navigation">
+	<%= link_to "About", static_pages_about_path %>
+	<%= link_to "Contact", static_pages_contact_path %>
+	<%= link_to "Featured Products", static_pages_landing_page_path %>
+	<%= link_to "Add New Product", new_product_path %>
+	<%= link_to "See All Products", @product %>
+
+	<%= form_tag("/products", method: "get", class: "search_products") do %>
+        <%= label_tag(:q, "Search for:") %>
+        <%= text_field_tag(:q) %>
+        <%= submit_tag("Search") %>
+	<% end %>
+</div>
