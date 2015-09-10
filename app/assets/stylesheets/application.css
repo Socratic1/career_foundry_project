@@ -10,6 +10,11 @@ body {
 	padding: 8px 20px;
 }
 
+li {
+	display: inline-block;
+	position-top: 10px;
+}
+
 a:hover {
 	text-decoration: none;
 }
@@ -21,7 +26,8 @@ a:hover {
 .search_products {
 	float: right;
 	position: relative;
-	bottom: 2px;
+	bottom: 30px;
+	display: inline-block;
 }
 
 h1 {

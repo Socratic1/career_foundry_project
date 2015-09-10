@@ -16,16 +16,20 @@
 </head>
 <body>
 
-<%= render partial: 'layouts/navigation' %>
+  <%= render partial: 'layouts/navigation' %>
 
-<h1>Welcome to Bike Leuven</h1>
-<h2>Your source for used bikes in Leuven</h2>
+  <p class="notice"><%= notice %></p>
+  <p class="alert"><%= alert %></p>
 
-<div class="image">
-	<%= image_tag("racebike.jpg") %>
-</div>
 
-<%= yield %>
+  <h1>Welcome to Bike Leuven</h1>
+  <h2>Your source for used bikes in Leuven</h2>
+
+  <div class="image">
+	 <%= image_tag("racebike.jpg") %>
+  </div>
+
+  <%= yield %>
 
 </body>
 </html>
