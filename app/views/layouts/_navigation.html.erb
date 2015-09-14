@@ -18,8 +18,8 @@
 			</li>
 		<% end %>
 		<%= csrf_meta_tags %>
-
 	</ul>
+	
 		<%= form_tag("/products", method: "get", class: "search_products") do %>
         	<%= label_tag(:q, "Search for:") %>
         	<%= text_field_tag(:q) %>
