@@ -54,6 +54,8 @@ describe StaticPagesController, :type => :controller  do
 		end
 	end
 
+	describe "POST /thank_you" do
+	end
 
 end
 

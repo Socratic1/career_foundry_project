@@ -5,7 +5,8 @@ describe Comment do
 	context "user id, product id, body, and rating present" do
 		
 		before do 
-            @user = User(email: "example@example.com", reset_password_token: "examplepass").create
+            @user = User(email: "example@example.com", password: "examplepass",
+            			 password_confirmation: "examplepass").create
 			@product = Product(name: "Example product").create
 			@comment = Comment.new(user: @user.id, product: @product.id,
 										   body: "Example comment", rating: 5)
@@ -22,8 +23,9 @@ describe Comment do
 	context "body missing" do
 
 		before do 
-            @user = User(email: "example@example.com", reset_password_token: "examplepass").create
-			@product = Product(name: "Example product").create
+            @user = User(email: "example@example.com", password: "examplepass",
+            			 password_confirmation: "examplepass").create			
+            @product = Product(name: "Example product").create
 			@comment = Comment.new(user: @user.id, product: @product.id, rating: 5, body: "")
 		end
 
@@ -47,8 +49,9 @@ describe Comment do
 	context "product id missing" do
 
 		before do
-            @user = User(email: "example@example.com", reset_password_token: "examplepass").create
-			@comment = Comment.new(user: @user.id, body: "Example comment", rating: 5)
+            @user = User(email: "example@example.com", password: "examplepass",
+            			 password_confirmation: "examplepass").create			
+            @comment = Comment.new(user: @user.id, body: "Example comment", rating: 5)
 		end
 
 		it "should raise product id presence validation error" do
