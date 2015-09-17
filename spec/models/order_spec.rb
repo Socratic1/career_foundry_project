@@ -5,10 +5,13 @@ describe Order do
 	context "user id, product id, total present" do
 
 		before do
-            @user = User(email: "example@example.com", password: "examplepass",
-                         password_confirmation: "examplepass").create            
-            @product = Product(name: "Example product").create
-            @order = Order.new(user: @user.id, product: @product.id, total: "30")
+            @user = User.new(email: "example@example.com", 
+                         password: "examplepass",
+                         password_confirmation: "examplepass")            
+            @product = Product.new(name: "Example product")
+            @order = Order.new(user: @user.id, 
+                               product: @product.id, 
+                               total: "30")
         end
 
         it "should return user id, product id, total" do
