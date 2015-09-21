@@ -1,106 +1,131 @@
 require 'rails_helper'
 
-describe ProductsController, :type => :controller do 
-
-	before do
-		@product = products(:one)
-	end
-
-	context "user logged in" do
+RSpec.configure do |config|
+	config.include Devise::TestHelpers, type: :controller
+	describe ProductsController, :type => :controller do
+		render_views
 
 		before do
-			@user = User.new(email: "example@example.com", password: "examplepass",
-            			 password_confirmation: "examplepass")
-			@user.save
-		end
+			@product = Product.create(
+				name: "Example Bike",
+                description: "For testing",
+                image_url: "example.jpg", 
+                colour: "red"
+            ) 
+        end
 
-		context "search query passed" do
 
-			describe "GET /products" do
+		context "user logged in" do
+
+			before do
+				@user = User.create(
+                	email: "example@example.com", 
+                	password: "examplepass",
+                	password_confirmation: "examplepass"
+            	)     
+				sign_in :user, @user
 			end
 
-		end
 
-		context "no search made" do
+			context "get /products" do
+				context "search query passed" do
 
-			describe "GET /products" do
-			end
+					before do
+						search_term = "Example bike"
+						@products = Product.where("name LIKE ?", "%#{search_term}")
+					end
 
-		end
+					it "GET /products" do
+						expect(response).to be_success
+						expect(response).to have_http_status(200)
+					end
 
-		describe "GET /products/1" do
-			it "renders the @product template" do
-				get :show, id: @product
-				assert_response :success
-			end
-		end
-
-		describe "GET /products/new" do
-			it "responds successfully with an HTTP 200 status code" do
-				get :new
-				expect(response).to be_success
-				expect(response).to have_http_status(200)
-			end
-
-			it "renders the index template" do
-				get :new
-				expect(response).to render_template("/new")
-			end
-		end
-
-		describe "GET /products/1/edit" do
-		end
-
-		describe "POST /products" do
-			it "successfully creates new product" do
-				assert_difference('Product.count') do
-					post :create, product: { title: "test product" }
+					it "renders index template" do
+						expect(response).to render_template("/products")
+					end
 				end
 
-				assert_redirected_to product_path(assigns(:product))
-			end
-		end
+				context "no search made" do
 
-		describe "PATCH /products/1" do
-			it "edits @product" do
-				get :edit, id: @product
-				assert_response :success
-			end
-		end
+					before do
+						@products = Product.all
+					end
 
-		describe "DELETE /products/1" do
-			it "deletes @product" do
-				assert_difference('Product.count', -1) do
-					delete :destroy, id: @product
+					it "responds successfully with an HTTP 200 status code" do
+						expect(response).to be_success
+						expect(response).to have_http_status(200)
+					end
+
+					it "renders index template" do
+						expect(response).to render_template("/products")
+					end
+				end
+			end
+
+
+
+			context "GET /products/1" do
+				it "responds successfully" do
+						expect(response).to be_success
+						expect(response).to have_http_status(200)
 				end
 
-				assert_redirected_to product_path
+				it "renders the products/@product.id template" do
+					get :show, id: @product
+					expect(response).to render_template :show
+				end
+			end
+
+			context "GET /products/new" do
+				it "responds successfully with an HTTP 200 status code" do
+					get :new
+					expect(response).to be_success
+					expect(response).to have_http_status(200)
+				end
+
+				it "renders the /products/new template" do
+					get :new
+					expect(response).to render_template("products/new")
+				end
+			end
+
+			context "GET /products/1/edit" do
+			end
+
+			context "POST /products" do
+				it "successfully creates new product" do
+					expect{ post :create, product: { name: "Example product" } }.to change{ Product.count }.by(1)
+					assert_redirected_to product_path(assigns(:product))
+				end
+			end
+
+			context "PATCH /products/1" do
+				it "edits @product" do
+					get :edit, id: @product
+					assert_response :success
+				end
+			end
+
+			context "DELETE /products/1" do
+				it "deletes @product" do
+					expect{ delete :destroy, id: @product }.to change{ Product.count }.by(-1)
+					assert_redirected_to products_path
+				end
+			end
+		end
+
+		context "no user logged in" do
+
+			before do
+				current_user = nil
+			end
+
+			context "GET /products" do
+				it "responds unsuccessfully with redirect to login" do
+					expect(response).to have_http_status(301)
+					assert_redirected_to new_user_session_path
+				end
 			end
 		end
 	end
-
-	context "no user logged in" do
-
-		describe "GET /products" do
-		end
-
-		describe "GET /products/1" do
-		end
-
-		describe "GET /products/new" do
-		end
-
-		describe "GET /products/1/edit" do
-		end
-
-		describe "POST /products" do
-		end
-
-		describe "PATCH /products/1" do
-		end
-
-		describe "DELETE /products/1" do
-		end
-	end
-
 end
