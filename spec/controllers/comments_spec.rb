@@ -20,15 +20,11 @@ RSpec.configure do |config|
 
         end
 
-		context "GET /products/1" do
+		context "show comments" do
 			it "responds successfully" do
-					expect(response).to be_success
-					expect(response).to have_http_status(200)
 			end
 
 			it "renders the products/@product.id template" do
-				get :show, id: @product
-				expect(response).to render_template :show
 			end
 		end
 
