@@ -1,7 +1,5 @@
 require 'rails_helper'
 
-RSpec.configure do |config|
-	config.include Devise::TestHelpers, type: :controller
 	describe ProductsController, :type => :controller do
 		render_views
 
@@ -127,5 +125,5 @@ RSpec.configure do |config|
 				end
 			end
 		end
+
 	end
-end

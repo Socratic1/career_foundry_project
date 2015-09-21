@@ -63,6 +63,20 @@ RSpec.configure do |config|
 			end
 
 			context "not logged in as admin" do
+				before do
+					@user = User.create(
+                		email: "example@example.com", 
+                		password: "examplepass",
+                		password_confirmation: "examplepass",
+                		admin: false
+            		) 
+            		sign_in :user, @user
+				end
+
+				it "deletes @comment" do
+					expect{ delete :destroy, id: @comment }.to change{ Comment.count }.by(-1)
+					assert_redirected_to product_path(assigns(:product))
+				end
 
 			end
 		end
