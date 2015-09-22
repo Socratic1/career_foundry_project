@@ -6,14 +6,11 @@ RSpec.configure do |config|
 		render_views
 
 		before do
-			@user = User.create(
-                email: "example@example.com", 
-                password: "examplepass",
-                password_confirmation: "examplepass"
-            ) 
-			@product = Product.create(name: "Example Bike")
+			@user = create(:user)
+			@product = create(:product)
 			@comment = @product.comments.create(
 				user: @user,
+				product: @product,
                 rating: 5, 
                 body: "Test comment"
             )
@@ -32,12 +29,7 @@ RSpec.configure do |config|
 			it "successfully creates new comment" do
 				expect{ 
 					post :create,
-					product: @product,
-					comment: {
-						user: @user,
-						rating: 5,
-						body: "Test comment"
-					} 
+					product_id: @product
 				}.to change{ @product.comments.count }.by(1)
 				assert_redirected_to product_path(assigns(:product))
 			end
@@ -47,29 +39,23 @@ RSpec.configure do |config|
 			context "logged in as admin" do
 
 				before do
-					@user = User.create(
-                		email: "example@example.com", 
-                		password: "examplepass",
-                		password_confirmation: "examplepass",
-                		admin: true
-            		) 
+					@user = create(:user, email: "example2@example.com")
             		sign_in :user, @user
 				end
 
 				it "deletes @comment" do
-					expect{ delete :destroy, product: @product, id: @comment }.to change{ Comment.count }.by(-1)
+					expect{ 
+						delete :destroy, 
+						product_id: @product, 
+						comment: @comment 
+					}.to change{ Comment.count }.by(-1)
 					assert_redirected_to product_path(assigns(:product))
 				end
 			end
 
 			context "not logged in as admin" do
 				before do
-					@user = User.create(
-                		email: "example@example.com", 
-                		password: "examplepass",
-                		password_confirmation: "examplepass",
-                		admin: false
-            		) 
+					@user = create(:admin)
             		sign_in :user, @user
 				end
 

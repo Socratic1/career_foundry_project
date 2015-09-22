@@ -3,7 +3,7 @@ require "rails_helper"
 	describe UsersController, :type => :controller do 
 
 		before do
-			@user = User.create(email: "example@example.com", password: "examplepass")
+			@user = create(:user)
 		end
 
 		describe "GET #show" do
@@ -20,6 +20,7 @@ require "rails_helper"
 				end
 
 				it "assigns the correct user" do
+					get :show, id: @user.id
 					expect(assigns(:user)).to eq @user
 				end
 			end
@@ -34,7 +35,7 @@ require "rails_helper"
 			context "Another user is logged in" do
 
 				before do
-					@user1 = User.create(email: "example@example.com", password: "examplepass")
+					@user1 = create(:user, email: "example2@example.com")
 					sign_in :user, @user
 				end
 

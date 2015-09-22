@@ -4,23 +4,14 @@ require 'rails_helper'
 		render_views
 
 		before do
-			@product = Product.create(
-				name: "Example Bike",
-                description: "For testing",
-                image_url: "example.jpg", 
-                colour: "red"
-            ) 
+			@product = create(:product)
         end
 
 
 		context "user logged in" do
 
 			before do
-				@user = User.create(
-                	email: "example@example.com", 
-                	password: "examplepass",
-                	password_confirmation: "examplepass"
-            	)     
+				@user = create(:user)  
 				sign_in :user, @user
 			end
 
@@ -34,12 +25,14 @@ require 'rails_helper'
 					end
 
 					it "GET /products" do
+						get :index
 						expect(response).to be_success
 						expect(response).to have_http_status(200)
 					end
 
 					it "renders index template" do
-						expect(response).to render_template("/products")
+						get :index
+						expect(response).to render_template :index
 					end
 				end
 
@@ -50,12 +43,14 @@ require 'rails_helper'
 					end
 
 					it "responds successfully with an HTTP 200 status code" do
+						get :index
 						expect(response).to be_success
 						expect(response).to have_http_status(200)
 					end
 
 					it "renders index template" do
-						expect(response).to render_template("/products")
+						get :index
+						expect(response).to render_template :index
 					end
 				end
 			end
@@ -69,7 +64,7 @@ require 'rails_helper'
 				end
 
 				it "renders the products/@product.id template" do
-					get :show, id: @product
+					get :show, id: @product.id
 					expect(response).to render_template :show
 				end
 			end
@@ -92,7 +87,7 @@ require 'rails_helper'
 
 			context "POST /products" do
 				it "successfully creates new product" do
-					expect{ post :create, product: { name: "Example product" } }.to change{ Product.count }.by(1)
+					expect{ post :create, product: { name: "Example Product" } }.to change{ Product.count }.by(1)
 					assert_redirected_to product_path(assigns(:product))
 				end
 			end
@@ -120,7 +115,8 @@ require 'rails_helper'
 
 			context "GET /products" do
 				it "responds unsuccessfully with redirect to login" do
-					expect(response).to have_http_status(301)
+					get :index
+					expect(response).to have_http_status(302)
 					assert_redirected_to new_user_session_path
 				end
 			end
