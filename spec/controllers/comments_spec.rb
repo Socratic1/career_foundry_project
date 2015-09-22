@@ -29,11 +29,11 @@ RSpec.configure do |config|
 		end
 
 		context "create comment" do
-			it "successfully creates new product" do
+			it "successfully creates new comment" do
 				expect{ 
-					post :create, 
-					comment: { 
-						product: @product,
+					post :create,
+					product: @product,
+					comment: {
 						user: @user,
 						rating: 5,
 						body: "Test comment"
@@ -57,7 +57,7 @@ RSpec.configure do |config|
 				end
 
 				it "deletes @comment" do
-					expect{ delete :destroy, id: @comment }.to change{ Comment.count }.by(-1)
+					expect{ delete :destroy, product: @product, id: @comment }.to change{ Comment.count }.by(-1)
 					assert_redirected_to product_path(assigns(:product))
 				end
 			end
