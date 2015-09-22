@@ -54,17 +54,5 @@ describe StaticPagesController, :type => :controller  do
 		end
 	end
 
-	describe "Send contact message" do
-		before do
-			@name = "Example Name"
-			@email = "example@example.com"
-			@message = "example message"
-		end
-
-		it "successfully delivers message" do
-			expect{ thank_you }.to equal{ UserMailer.contact_form(@email, @name, @message).deliver }
-		end
-
-	end
 end
 
