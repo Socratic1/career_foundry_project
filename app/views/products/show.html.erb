@@ -11,6 +11,15 @@
 </p>
 
 <p>
+  <strong>Price:</strong>
+  <%= @product.amount %>
+</p>
+
+<%= form_tag("/payments", action: "create", method: "post") do %>
+  <%= render partial: "shared/stripe_checkout_button" %>
+<% end %>
+
+<p>
   <%= image_tag(@product.image_url) %>
 </p>
 
