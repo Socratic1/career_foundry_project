@@ -26,6 +26,11 @@ RSpec.configure do |config|
 		end
 
 		context "create comment" do
+
+			before do
+           		sign_in :user, @user
+			end
+
 			it "successfully creates new comment" do
 				expect{ 
 					post :create,
@@ -44,7 +49,7 @@ RSpec.configure do |config|
 			context "logged in as admin" do
 
 				before do
-					@user = create(:user, email: "example2@example.com")
+					@user = create(:admin, email: "example2@example.com")
             		sign_in :user, @user
 				end
 
@@ -52,7 +57,7 @@ RSpec.configure do |config|
 					expect{ 
 						delete :destroy, 
 						product_id: @product.id, 
-						comment: @comment 
+						id: @comment.id
 					}.to change{ Comment.count }.by(-1)
 					assert_redirected_to product_path(assigns(:product))
 				end
@@ -60,12 +65,11 @@ RSpec.configure do |config|
 
 			context "not logged in as admin" do
 				before do
-					@user = create(:admin)
             		sign_in :user, @user
 				end
 
-				it "deletes @comment" do
-					expect{ delete :destroy, id: @comment }.to change{ Comment.count }.by(-1)
+				it "does not delete @comment" do
+					expect{ delete :destroy, id: @comment }.to change{ Comment.count }.by(0)
 					assert_redirected_to product_path(assigns(:product))
 				end
 
