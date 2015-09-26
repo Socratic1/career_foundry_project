@@ -29,7 +29,12 @@ RSpec.configure do |config|
 			it "successfully creates new comment" do
 				expect{ 
 					post :create,
-					product_id: @product.id
+					product_id: @product.id, 
+					comment: {
+						user: @user, 
+						rating: 5, 
+						body: "Test Comment"
+					}
 				}.to change{ @product.comments.count }.by(1)
 				assert_redirected_to product_path(assigns(:product))
 			end
