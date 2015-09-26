@@ -19,11 +19,9 @@ RSpec.configure do |config|
 
 		context "show comments" do
 			it "responds successfully" do
-				# no controller action 'show'
 			end
 
 			it "renders the products/@product.id template" do
-				# no controller action 'show'
 			end
 		end
 
