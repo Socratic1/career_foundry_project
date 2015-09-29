@@ -48,28 +48,37 @@ RSpec.configure do |config|
             context "logged in as admin" do
 
                 before do
-                    @user = create(:admin, email: "example2@example.com")
-                    sign_in :user, @user
+                    @admin = create(:admin, email: "example2@example.com")
+                    sign_in :user, @admin
                 end
 
                 it "deletes @comment" do
                     expect{ 
                         delete :destroy, 
                         product_id: @product.id, 
-                        id: @product.comments.first.id
+                        id: @comment.id
                     }.to change{ Comment.count }.by(-1)
-                    assert_redirected_to product_path(assigns(:product))
+                    assert_redirected_to product_path(@comment.product.id)
                 end
             end
 
             context "not logged in as admin" do
                 before do
                     sign_in :user, @user
+                    @comment1 = @product.comments.create(
+                        user: @user,
+                        rating: 5, 
+                        body: "Test comment"
+                    )
                 end
 
                 it "does not delete @comment" do
-                    expect{ delete :destroy, id: @comment }.to change{ Comment.count }.by(0)
-                    assert_redirected_to product_path(assigns(:product))
+                    expect{ 
+                        delete :destroy, 
+                        product_id: @product.id, 
+                        id: @comment.id
+                    }.to change{ Comment.count }.by(0)
+                    assert_redirected_to product_path(@comment.product.id)
                 end
 
             end

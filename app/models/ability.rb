@@ -8,7 +8,9 @@ class Ability
     if user.admin?
     	can :manage, Comment
     else
+      can :manage, Comment
     	cannot :destroy, Comment 
     end
+
   end
 end

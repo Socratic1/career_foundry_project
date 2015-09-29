@@ -3,6 +3,9 @@ FactoryGirl.define do
 	factory :comment do
 		rating 5
 		body "Test comment"
+
+		product
+		user
 	end
 
 	factory :product do
