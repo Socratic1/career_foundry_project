@@ -6,21 +6,18 @@ RSpec.configure do |config|
         render_views
 
         before do
-            @user = create(:user)
+            @user = create(:user, email: "commenting_user@example.com")
             @product = create(:product)
-            @comment = @product.comments.create(
-                user: @user,
-                rating: 5, 
-                body: "Test comment"
-            )
+            @comment = create(:comment, user: @user, product: @product)
 
         end
 
         context "show comments" do
             it "responds successfully" do
-            end
-
-            it "renders the products/@product.id template" do
+                expect(
+                    get :index, 
+                    product_id: @product.id
+                ).to include(@product.comments)
             end
         end
 
@@ -33,7 +30,7 @@ RSpec.configure do |config|
             it "successfully creates new comment" do
                 expect{ 
                     post :create,
-                    product_id: @product.id, 
+                    product_id: @comment.product.id, 
                     comment: {
                         user: @user, 
                         rating: 5, 
@@ -65,11 +62,7 @@ RSpec.configure do |config|
             context "not logged in as admin" do
                 before do
                     sign_in :user, @user
-                    @comment1 = @product.comments.create(
-                        user: @user,
-                        rating: 5, 
-                        body: "Test comment"
-                    )
+                    @comment1 = build(:comment, user: @user)
                 end
 
                 it "does not delete @comment" do

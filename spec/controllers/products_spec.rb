@@ -11,7 +11,7 @@ require 'rails_helper'
 		context "user logged in" do
 
 			before do
-				@user = create(:user)  
+				@user = create(:user, email: "signed_in_user@example.com")  
 				sign_in :user, @user
 			end
 

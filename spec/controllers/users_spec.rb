@@ -3,7 +3,7 @@ require "rails_helper"
 	describe UsersController, :type => :controller do 
 
 		before do
-			@user = create(:user)
+			@user = create(:user, email: "user@example.com")
 		end
 
 		describe "GET #show" do
@@ -35,7 +35,7 @@ require "rails_helper"
 			context "Another user is logged in" do
 
 				before do
-					@user1 = create(:user, email: "example2@example.com")
+					@user1 = create(:user, email: "user1@example.com")
 					sign_in :user, @user
 				end
 
