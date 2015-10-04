@@ -58,14 +58,23 @@ require 'rails_helper'
 
 
 			context "GET /products/1" do
+
+				before do
+					get :show, id: @product.id
+				end
+
 				it "responds successfully" do
-						expect(response).to be_success
-						expect(response).to have_http_status(200)
+					expect(response).to be_success
+					expect(response).to have_http_status(200)
 				end
 
 				it "renders the products/@product.id template" do
-					get :show, id: @product.id
 					expect(response).to render_template :show
+				end
+
+				it "renders the product comments" do
+					@comment = create(:comment, user: @user, product: @product)
+					expect(response).to include(@comment)
 				end
 			end
 

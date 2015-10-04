@@ -14,10 +14,6 @@ RSpec.configure do |config|
 
         context "show comments" do
             it "responds successfully" do
-                expect(
-                    get :index, 
-                    product_id: @product.id
-                ).to include(@product.comments)
             end
         end
 
