@@ -6,10 +6,15 @@ class PaymentsController < ApplicationController
 		begin
 			charge = Stripe::Charge.create(
 				:amount => params[:product.amount], #amount in cents, again
-				:currency => "euro",
+				:currency => "eur",
 				:source => token, 
 				:description => params[:product]
 				)
+
+			@product = Product.find(params[:product_id])
+			@order = @product.order.build
+			@order.user = current_user
+
 		rescue Stripe::CardError => e
 			# The card has been declined
 			body = e.json_body

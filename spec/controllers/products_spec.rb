@@ -76,6 +76,10 @@ require 'rails_helper'
 					@comment = create(:comment, user: @user, product: @product)
 					expect(response).to include(@comment)
 				end
+
+				it "renders the correct number of comments" do
+					
+				end
 			end
 
 			context "GET /products/new" do

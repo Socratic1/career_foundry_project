@@ -6,7 +6,7 @@ class OrdersController < ApplicationController
 	def show
 	end
 
-	def new
+	def build
 	end
 
 	def create

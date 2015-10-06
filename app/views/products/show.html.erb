@@ -12,7 +12,7 @@
 
 <p>
   <strong>Price:</strong>
-  <%= @product.amount %>
+  <%= '%.2f' % (@product.amount/100.00) %>
 </p>
 
 <%= form_tag("/payments", action: "create", method: "post") do %>
