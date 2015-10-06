@@ -1,19 +1,27 @@
 class PaymentsController < ApplicationController
 
 	def create
+		@product = Product.find(params[:product_id])
+
 		token = params[:stripeToken]
 		# Create the charge on Stripe's servers - this will charge the user's card
 		begin
 			charge = Stripe::Charge.create(
-				:amount => params[:product.amount], #amount in cents, again
+				:amount => @product.amount, #amount in cents, again
 				:currency => "eur",
 				:source => token, 
-				:description => params[:product]
+				:description => params[:stripeEmail]
 				)
 
-			@product = Product.find(params[:product_id])
 			@order = @product.order.build
 			@order.user = current_user
+
+			@email = @user[:email]
+			@message = "Thank for you purchasing the #{ @product[:name] }."
+			ActionMailer::Base.mail(:from => 'staff@leuvenbikes.com',
+				:to => @email,
+				:subject => 'Purchase Confirmation',
+				:body => @message).deliver
 
 		rescue Stripe::CardError => e
 			# The card has been declined

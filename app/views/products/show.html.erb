@@ -15,8 +15,9 @@
   <%= '%.2f' % (@product.amount/100.00) %>
 </p>
 
-<%= form_tag("/payments", action: "create", method: "post") do %>
+<%= form_tag("/payments", action: "create", method: "post") do |f| %>
   <%= render partial: "shared/stripe_checkout_button" %>
+  <%= f.hidden_field :product_id, @product.id %>
 <% end %>
 
 <p>
