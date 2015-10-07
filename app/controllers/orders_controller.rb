@@ -10,16 +10,17 @@ class OrdersController < ApplicationController
 		@order = Order.new
 		@order.user = User.find(params[:user_id])
 		@order.product = Product.find(params[:product_id])
-
 	end
 
 	def create
-		@order = Order.new(order_params)
+		@order = Order.new
+		@order.product = Product.find(params[:product_id])
+		@order.user = current_user
 
     	respond_to do |format|
       		if @order.save
-        		format.html { redirect_to @order, notice: 'Your order was successful.' }
-        		format.json { render :show, status: :created, location: @order }
+        		format.html { redirect_to @order.product, notice: 'Your order was successful.' }
+        		format.json { render :show, status: :created, location: @order.product }
       		else
         		format.html { render :new }
         		format.json { render json: @order.errors, status: :unprocessable_entity }

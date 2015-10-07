@@ -27,5 +27,9 @@
  </div>
 
 
-<%= link_to 'Confirm Purchase', post %> 
+<%= form_for(@order) do |f| %>
+  <%= hidden_field_tag :product_id, @order.product.id %>
+  <%= f.submit %>
+<% end %>
+
 <%= link_to 'Back', product_path(@order.product) %>
