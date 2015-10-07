@@ -56,15 +56,65 @@ img {
 	display: block;
 }
 
+.product_info {
+	position: relative;
+	float: right;
+	right: 150px;
+	top: 150px;
+}
+
 .average-rating {
 	position: relative;
-	left: 500px;
-	bottom: 100px;
+	height: 30px;
+}
+
+.average-rating .rated {
+	height: 0px;
+	position: relative;
+	bottom: 35px;
+}
+
+.product_image {
+	position: relative;
+	left: 30px;
+	width: 1000px;
+	margin: 0px;
+}
+
+.edit_back {
+	position: relative;
+	top: 35px;
+	left: 30px;
 }
 
 .rating {
 	position: absolute;
 }
+
+.add_review {
+	position: relative;
+	top: 50px;
+	left: 30px;
+}
+
+.product_reviews {
+	position: relative;
+	top: 70px;
+	margin: 0px 60px;
+	box-sizing: border-box;
+}
+
+.product_reviews .row {
+	width: 1300px;
+}
+
+.new_product {
+	width: 200px;
+	margin-left: auto; 
+	margin-right: auto;
+	margin-top: 40px;
+}
+
 
 /* typography */
 h1 {

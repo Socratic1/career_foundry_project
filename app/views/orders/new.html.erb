@@ -1,0 +1,31 @@
+<h1>Thank you for using our services.</h1>
+
+<p>
+	You (<%= @order.user.email %>) have ordered the <%= @order.product.name %>.
+</p>
+
+<div class="order_info">
+  <p>
+    <strong>Name:</strong>
+    <%= @order.product.name %>
+  </p>
+
+  <p>
+    <strong>Description:</strong>
+    <%= @order.product.description %>
+  </p>
+
+  <p>
+    <strong>Colour:</strong>
+    <%= @order.product.colour %>
+  </p>
+
+  <p>
+    <strong>Price:</strong>
+    <%= '%.2f' % (@order.product.amount/100.00) %>
+  </p>
+ </div>
+
+
+<%= link_to 'Confirm Purchase', post %> 
+<%= link_to 'Back', product_path(@order.product) %>

@@ -2,6 +2,7 @@ class PaymentsController < ApplicationController
 
 	def create
 		@product = Product.find(params[:product_id])
+		@user = current_user
 
 		token = params[:stripeToken]
 		# Create the charge on Stripe's servers - this will charge the user's card
@@ -12,9 +13,6 @@ class PaymentsController < ApplicationController
 				:source => token, 
 				:description => params[:stripeEmail]
 				)
-
-			@order = @product.order.build
-			@order.user = current_user
 
 			@email = @user[:email]
 			@message = "Thank for you purchasing the #{ @product[:name] }."
@@ -29,7 +27,7 @@ class PaymentsController < ApplicationController
 			err = body[:error]
 			flash[:error] = "Unfortunately, there was an error processing your payment: #{err[:message]}"
 		end
-		redirect_to product_path(product)
+		redirect_to new_order_url(:user_id => @user.id, :product_id => @product.id)
 	end
 
 
