@@ -10,6 +10,7 @@ class OrdersController < ApplicationController
 		@order = Order.new
 		@order.user = User.find(params[:user_id])
 		@order.product = Product.find(params[:product_id])
+		@customer = Stripe::Customer.retrieve(params[:customer_id])
 	end
 
 	def create
@@ -38,8 +39,8 @@ class OrdersController < ApplicationController
 				:metadata => {"order_id" => @order.id}
 			)
 
-			@email = @user[:email]
-			@message = "Thank for you purchasing the #{ @product[:name] }."
+			@email = @order.user[:email]
+			@message = "Thank for you purchasing the #{ @order.product[:name] }."
 			ActionMailer::Base.mail(:from => 'staff@leuvenbikes.com',
 				:to => @email,
 				:subject => 'Purchase Confirmation',

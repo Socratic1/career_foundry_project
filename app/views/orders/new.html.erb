@@ -29,6 +29,7 @@
 
 <%= form_for(@order) do |f| %>
   <%= hidden_field_tag :product_id, @order.product.id %>
+  <%= hidden_field_tag :customer_id, @customer.id %>
   <%= f.submit %>
 <% end %>
 

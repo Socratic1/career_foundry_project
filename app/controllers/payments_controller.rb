@@ -5,14 +5,14 @@ class PaymentsController < ApplicationController
 		@user = current_user
 
 		token = params[:stripeToken]
-		customer = Stripe::Customer.create(
+		@customer = Stripe::Customer.create(
 			:source => token,
 			:email => @user.email
 		)
 
 		redirect_to new_order_url(:user_id => @user.id, 
 								  :product_id => @product.id,
-								  :customer_id => customer.id
+								  :customer_id => @customer.id
 		)
 	end
 
