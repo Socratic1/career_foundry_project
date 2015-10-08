@@ -27,14 +27,14 @@ class OrdersController < ApplicationController
       		end
     	end
 
-		customer = Stripe::Customer.retrieve(params[:customer_id])
+		@customer = Stripe::Customer.retrieve(params[:customer_id])
 
 		begin
 			charge = Stripe::Charge.create(
 				:amount => @order.product.amount, #amount in cents, again
 				:currency => "eur",
 				:description => params[:stripeEmail],
-				:customer => customer.id,
+				:customer => @customer.id,
 				:metadata => {"order_id" => @order.id}
 			)
 
