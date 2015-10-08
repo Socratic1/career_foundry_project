@@ -33,7 +33,6 @@ class OrdersController < ApplicationController
 			charge = Stripe::Charge.create(
 				:amount => @order.product.amount, #amount in cents, again
 				:currency => "eur",
-				:source => token, 
 				:description => params[:stripeEmail],
 				:customer => customer.id,
 				:metadata => {"order_id" => @order.id}
