@@ -29,7 +29,7 @@ class OrdersController < ApplicationController
     	end
 
 		@customer = Stripe::Customer.retrieve(params[:customer_id])
-
+		Rails.configuration.stripe[:publishable_key]
 		begin
 			charge = Stripe::Charge.create(
 				:amount => @order.product.amount, #amount in cents, again

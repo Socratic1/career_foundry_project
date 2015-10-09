@@ -4,6 +4,7 @@ class PaymentsController < ApplicationController
 		@product = Product.find(params[:product_id])
 		@user = current_user
 
+		Rails.configuration.stripe[:publishable_key]
 		token = params[:stripeToken]
 		@customer = Stripe::Customer.create(
 			:source => token,
