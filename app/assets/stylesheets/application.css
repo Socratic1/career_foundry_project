@@ -63,6 +63,13 @@ img {
 	top: 150px;
 }
 
+.payment_button {
+	position: relative;
+	float: right;
+	right: 33px;
+	top: 350px;
+}
+
 .average-rating {
 	position: relative;
 	height: 30px;
