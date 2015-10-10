@@ -29,12 +29,6 @@ class OrdersController < ApplicationController
 				:metadata => {"order_id" => @order.id}
 			)
 
-			@email = @order.user[:email]
-			@message = "Thank for you purchasing the #{ @order.product[:name] }."
-			ActionMailer::Base.mail(:from => 'staff@leuvenbikes.com',
-				:to => @email,
-				:subject => 'Purchase Confirmation',
-				:body => @message).deliver
 
 		rescue Stripe::CardError => e
 			# The card has been declined
