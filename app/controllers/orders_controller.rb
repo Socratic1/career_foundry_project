@@ -18,16 +18,6 @@ class OrdersController < ApplicationController
 		@order.product = Product.find(params[:product_id])
 		@order.user = current_user
 
-		respond_to do |format|
-      		if @order.save
-        		format.html { redirect_to @order.product, notice: 'Your order was successful.' }
-        		format.json { render :show, status: :created, location: @order.product }
-      		else
-        		format.html { render :new }
-        		format.json { render json: @order.errors, status: :unprocessable_entity }
-      		end
-    	end
-
 		@customer = Stripe::Customer.retrieve(params[:customer_id])
 
 		begin
@@ -53,5 +43,15 @@ class OrdersController < ApplicationController
 			flash[:error] = "Unfortunately, there was an error processing your payment: #{err[:message]}"
 		end
 	end
+
+	respond_to do |format|
+      	if @order.save
+        	format.html { redirect_to @order.product, notice: 'Your order was successful.' }
+        	format.json { render :show, status: :created, location: @order.product }
+      	else
+        	format.html { render :new }
+        	format.json { render json: @order.errors, status: :unprocessable_entity }
+      	end
+    end
 
 end
