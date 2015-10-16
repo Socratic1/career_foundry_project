@@ -1,0 +1,13 @@
+$(document).ready( function () {
+	$("#new_comment").html("Thank you for your review!");
+	$('.product_reviews').prepend("<%= j render @comment %>");
+
+	$('.rating').raty( { path: '/assets', scoreName: 'comment[rating]' });
+	$('.rated').raty( { path: '/assets', 
+		readOnly: true, 
+		score: function() {
+			return $(this).attr('data-score');
+		}
+	});
+
+});
