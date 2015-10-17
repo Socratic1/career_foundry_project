@@ -13,7 +13,6 @@ $(document).on('ready', function(){
 		lensSize:  200
 	});
 
-	$(".form_product_colour").chosen({allow_single_deselect: true,
-		width: '200px'
-	});
+	$(".form_product_colour").chosen();
+
 });
