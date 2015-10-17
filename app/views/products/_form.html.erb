@@ -30,8 +30,9 @@
     <%= f.label :colour %><br>
     <%= f.select(
         :colour, 
+        options_for_select([['', 1],['Red', 2],['Green', 3],['Blue', 4], ['Orange', 5]]),
+        {},
         :class => "form_product_colour",
-        :options_for_select([['', 1],['Red', 2],['Green', 3],['Blue', 4], ['Orange', 5]]),
         data_placeholder: "Pick a color... ") %>
   </div>
   </br>

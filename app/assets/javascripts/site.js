@@ -1,4 +1,4 @@
-$(document).on('ready page:load', function(){
+$(document).on('ready', function(){
 	$('.rating').raty( { path: '/assets', scoreName: 'comment[rating]' } );
 	$('.rated').raty({ path: '/assets',
 		readOnly: true,
@@ -13,8 +13,7 @@ $(document).on('ready page:load', function(){
 		lensSize:  200
 	});
 
-	$(".product_colour").chosen({allow_single_deselect: true,
-								 no results_text: 'No results matched',
-								 width: '200px'
+	$(".form_product_colour").chosen({allow_single_deselect: true,
+		width: '200px'
 	});
 });
