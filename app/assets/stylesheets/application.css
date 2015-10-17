@@ -145,6 +145,7 @@ h1 {
  *= require_tree .
  *= require_self
  *= require_jquery.raty
+ *= require chosen
  */
 
 
