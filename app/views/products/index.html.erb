@@ -16,7 +16,13 @@
   </thead>
 
   <tbody>
-    <%= render @products %>
+    <% cache(cache_key_for_products) do %>
+      <% Product.all.each do |p| %>
+        <% cache(p) do %>
+          <%= render partial: 'product', object: p %>
+        <% end %>
+      <% end %>
+    <% end %>
   </tbody>
 </table>
 

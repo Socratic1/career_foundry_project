@@ -32,6 +32,9 @@ gem 'spork-rails'
 gem 'stripe'
 
 gem 'recaptcha', :require => 'recaptcha/rails'
+
+gem 'dalli'
+
 # Use ActiveModel has_secure_password
 # gem 'bcrypt', '~> 3.1.7'
 
