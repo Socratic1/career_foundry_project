@@ -1,0 +1,48 @@
+
+.navigation {
+	color: #888; 
+	height: 64px;
+	background-color: #161616;
+	letter-spacing: 1px;
+	padding: 20px 20px;
+	width: 100%;
+
+	.nav_links {
+		position: relative;
+		bottom: 5px;
+	}
+
+	p {
+		text-transform: uppercase;
+		display: inline-block;
+		font-size: 1.3em;
+	}
+
+	ul {
+		display: inline-block;
+		position: relative;
+		left: 50px;
+	}
+
+	li {
+		display: inline-block;
+		position-top: 10px;
+	}
+
+	a {
+		margin-left: 10px;
+		color: #666;
+		&:hover {
+			text-decoration: none;
+			color: #888;
+		}
+	}
+
+	.search_products {
+		float: right;
+		position: relative;
+		bottom: 30px;
+		display: inline-block;
+		width: 350px
+	}
+}

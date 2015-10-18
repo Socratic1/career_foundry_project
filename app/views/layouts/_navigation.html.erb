@@ -1,28 +1,31 @@
 <div class="navigation">
-	<ul>
-		<li><%= link_to "About", static_pages_about_path %></li>
-		<li><%= link_to "Contact", static_pages_contact_path %></li>
-		<li><%= link_to "Featured Products", static_pages_landing_page_path %></li>
-		<li><%= link_to "Add New Product", new_product_path %></li>
-		<li><%= link_to "See All Products", products_path %></li>
-		<% if user_signed_in? %>
-			<li>
-				<%= link_to('Logout', destroy_user_session_path, :method => :delete) %>
-			</li>
-		<% else %>
-			<li>
-				<%= link_to('Login', new_user_session_path) %>
-			</li>
-			<li>
-				<%= link_to('Sign Up', new_user_registration_path) %>
-			</li>
-		<% end %>
-		<%= csrf_meta_tags %>
-	</ul>
+	<div class="nav_links">
+		<p><%= link_to "Bike Leuven", root_path %></p>
+		<ul>
+			<li><%= link_to "About", static_pages_about_path %></li>
+			<li><%= link_to "Contact", static_pages_contact_path %></li>
+			<li><%= link_to "Featured Products", static_pages_landing_page_path %></li>
+			<li><%= link_to "Add New Product", new_product_path %></li>
+			<li><%= link_to "See All Products", products_path %></li>
+			<% if user_signed_in? %>
+				<li>
+					<%= link_to('Logout', destroy_user_session_path, :method => :delete) %>
+				</li>
+			<% else %>
+				<li>
+					<%= link_to('Login', new_user_session_path) %>
+				</li>
+				<li>
+					<%= link_to('Sign Up', new_user_registration_path) %>
+				</li>
+			<% end %>
+			<%= csrf_meta_tags %>
+		</ul>
 	
 		<%= form_tag("/products", method: "get", class: "search_products") do %>
         	<%= label_tag(:q, "Search for:") %>
         	<%= text_field_tag(:q) %>
         	<%= submit_tag("Search") %>
 		<% end %>
+	</div>
 </div>

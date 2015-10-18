@@ -13,8 +13,8 @@ $(document).on('ready', function(){
 		lensSize:  200
 	});
 
-	$('.form_product_colour').chosen({
-		width: '200px'
+	$('.chosen-select').chosen({
+		width: "173px"
 	});
 
 });
