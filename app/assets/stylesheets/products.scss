@@ -2,26 +2,36 @@
 // They will automatically be included in application.css.
 // You can use Sass (SCSS) here: http://sass-lang.com/
 
-h2 {
-	margin-top: 50px;
-}
 
-table {
-	width: 700px;
-	margin-left: auto;
-	margin-right: auto;
-}
+.new_product_body,
+.products_body {
+	h2 {
+		margin-top: 50px;
+	}
 
-form,
-.new_product {
-	width: 200px;
-	margin-left: auto; 
-	margin-right: auto;
-	margin-top: 40px;
-}
+	table {
+		width: 1000px;
+		margin-left: auto;
+		margin-right: auto;
+		margin-top: 40px;
+		a:hover, a:active, a:focus {
+			color: #999;
+		}
+	}
 
-p {
-	text-align: center;
-	margin: 10px 0px 50px 0px;
-}
+	form,
+	.new_product {
+		width: 200px;
+		margin-left: auto; 
+		margin-right: auto;
+		margin-top: 40px;
+	}
 
+	p {
+		margin: 10px 10px 50px 273px;
+		a:hover, a:active, a:focus {
+			color: #999;
+		}	
+	}
+
+}

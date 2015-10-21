@@ -4,6 +4,8 @@ class Product < ActiveRecord::Base
 
 	validates :name, presence: true
 
+	has_many :wish_lists
+
 
   def average_rating
     comments.average(:rating).to_f

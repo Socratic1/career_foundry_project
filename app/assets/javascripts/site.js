@@ -13,6 +13,8 @@ $(document).on('ready', function(){
 		lensSize:  200
 	});
 
+	$('.new_product_description').tagsInput();
+
 	$('.chosen-select').chosen({
 		width: "173px"
 	});

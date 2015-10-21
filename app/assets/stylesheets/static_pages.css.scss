@@ -6,7 +6,7 @@
 .index-body {
 	background-image: url("app_index_photo.jpg");
 	position: relative;
-	padding-bottom: 32%;
+	height: 727px;
 	margin-bottom: 0px;
 	width: 100%;
 	h1 {
@@ -22,21 +22,43 @@
 		top: 80px;
 		font-family: 'Dosis Light', sans-serif;
 	}
+	p {
+		font-family: 'Dosis Light', sans-serif;
+		font-weight: bold;
+	}
 	.index_registration {
 		position: relative;
 		top: 200px;
 		p {
-		margin-bottom: 20px;
+			margin-bottom: 20px;
+		}
+	}
+	.index_to_products {
+		position: relative;
+
+		top: 150px;
+		p {
+			margin-bottom: 15px;
+			text-align: center;
 		}
 	}
 	a {
 		color: #333;
 		font-size: 1.2em;
+		text-align: center;
 		&:hover, &:active, &:focus {
 			color: #555;
 			text-decoration: none;
 			background-color: transparent;
 		}
+	}
+	.index-photo {
+		background-image: url("index_photo_small.jpg");
+		width: 400px;
+		height: 100px;
+		position: relative;
+		margin-left: auto;
+		margin-right: auto;
 	}
 }
 

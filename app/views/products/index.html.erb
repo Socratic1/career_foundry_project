@@ -1,29 +1,31 @@
-<h2>Listing Products</h2>
+<div class="products_body">
+  <h2>Listing Products</h2>
 
-<table>
-  <thead>
-    <tr>
-      <th class="field-label col-md-3 active">
-        <label>Name</label>
-      </th>
-      <th class="col-md-3">Description</th>
-      <th class="col-md-2">Amount</th>
-      <th class="col-md-2">Colour</th>
-      <th colspan="2" class="col-md-2">Modify</th>
-    </tr>
-  </thead>
+  <table>
+    <thead>
+      <tr>
+        <th class="field-label col-md-3 active">
+          <label>Name</label>
+        </th>
+        <th class="col-md-3">Description</th>
+        <th class="col-md-2">Amount</th>
+        <th class="col-md-2">Colour</th>
+        <th colspan="2" class="col-md-2">Modify</th>
+      </tr>
+    </thead>
 
-  <tbody>
-    <% cache(cache_key_for_products) do %>
-      <% Product.all.each do |p| %>
-        <% cache(p) do %>
-          <%= render partial: 'product', object: p %>
+    <tbody>
+      <% cache(cache_key_for_products) do %>
+        <% Product.all.each do |p| %>
+          <% cache(p) do %>
+            <%= render partial: 'product', object: p %>
+          <% end %>
         <% end %>
       <% end %>
-    <% end %>
-  </tbody>
-</table>
+    </tbody>
+  </table>
 
-<br>
+  <br>
 
-<p><%= link_to 'New Product', new_product_path %></p>
+  <p><%= link_to 'New Product', new_product_path %></p>
+</div>

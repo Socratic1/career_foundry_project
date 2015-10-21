@@ -3,11 +3,18 @@
 		<h1>Welcome to Bike Leuven</h1>
   		<h2>Your source for used bikes in Leuven</h2>
 
-  		<div class="index_registration">
-  			<% unless user_signed_in? %>
+  		<% unless user_signed_in? %>
+  			<div class="index_registration">
 				<p><%= link_to('Register Now', new_user_registration_path) %></p>
 				<p><%= link_to('Login', new_user_session_path) %></p>
-  			<% end %>
-  		</div>
+			</div>
+		<% else %>
+			<div class="index_to_products">
+				<p><%= link_to('Check out our Products', products_path) %></p>
+				<%= link_to products_path do %>
+					<div class="index-photo"></div>
+				<% end %>
+  			</div>
+  		<% end %>
 	</div>
 </div>

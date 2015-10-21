@@ -17,6 +17,8 @@ Rails.application.routes.draw do
   devise_for :users, :controllers => { :registrations => "my_devise/registrations" }, 
                      :path => '', :path_names => {:sign_in => 'login', :sign_out => 'logout', :sign_up => 'register'}
 
+  resources :wishes, only: [:show, :new, :create, :update]
+
   resources :products do
     resources :comments
   end

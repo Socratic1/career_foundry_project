@@ -9,7 +9,8 @@
 
 	.nav_links {
 		position: relative;
-		bottom: 5px;
+		display: inline-block;
+		top: 5px;
 	}
 
 	p {
@@ -39,9 +40,8 @@
 	}
 
 	.search_products {
-		float: right;
+		left: 350px;
 		position: relative;
-		bottom: 30px;
 		display: inline-block;
 		width: 350px
 	}
