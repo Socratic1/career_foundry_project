@@ -17,8 +17,7 @@ class ProductsController < ApplicationController
   # GET /products/1.json
   def show
     @wish = Wish.new
-    @comments = @product.comments.order("created_at DESC")
-    @comments = Comment.paginate(:page => params[:page], :per_page => 2)
+    @comments = @product.comments.order("created_at DESC").paginate(:page => params[:page], :per_page => 5)
   end
 
   # GET /products/new
