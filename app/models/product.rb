@@ -1,10 +1,10 @@
 class Product < ActiveRecord::Base
 	has_many :orders
 	has_many :comments
+	has_many :wishes
 
 	validates :name, presence: true
 
-	has_many :wish_lists
 
 
   def average_rating

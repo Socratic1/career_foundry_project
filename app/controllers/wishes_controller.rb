@@ -1,7 +1,7 @@
 class WishesController < ApplicationController
 
 	def index
-		@wishes = Wishes.find_by_user_id(current_user.id)
+		@wishes = Wish.all(user: { id: current_user.id })
 	end
 
 	def show
@@ -10,12 +10,13 @@ class WishesController < ApplicationController
 	end
 
 	def create
-		@wish = current_user.wishes.new
-		@wish.product = Product.find(params[:product_id])
+		@product = Product.find(params[:product_id])
+		@wish = @product.wishes.new
+		@wish.user = current_user
 		respond_to do |format|
-			if @comment.save
-				format.html { redirect_to @product, notice: 'You have added #{@wish.product} to your wish list.' }
-				format.json { render :show, status: :created, location: @product }
+			if @wish.save
+				format.html { redirect_to action: "index", notice: 'You have added <%= @wish.product %> to your wish list.' }
+				format.json { render :index, status: :created }
 			else
 				format.html { redirect_to @product, alert: 'Wish was not created succesfully.' }
 				format.json { render json: @wish.errors, status: :unprocessable_entity }

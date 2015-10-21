@@ -5,6 +5,6 @@ class User < ActiveRecord::Base
          :recoverable, :rememberable, :trackable, :validatable
   has_many :orders
   has_many :comments
-
-  has_many :wish_list
+  has_many :wishes
+  
 end
