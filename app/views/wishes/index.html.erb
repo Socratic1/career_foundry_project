@@ -1,5 +1,24 @@
-<h1>Your Wish-List</h1>
+<div class="wishes_body">
+  <h2>Your Wish-List</h2>
 
-<% @wishes.each do |wish| %>
-	<p><%= wish.product.name %></p>
-<% end %>
+  <table>
+    <thead>
+      <tr>
+        <th class="field-label col-md-2 active">
+          <label>Name</label>
+        </th>
+        <th class="col-md-3">Description</th>
+        <th class="col-md-1">Amount</th>
+        <th class="col-md-1">Number</th>
+        <th class="col-md-2">Total</th>
+        <th colspan="3" class="col-md-3">Remove</th>
+      </tr>
+    </thead>
+
+    <tbody>
+        <% @wishes.all.each do |w| %>
+            <%= render partial: 'wish', object: w %>
+        <% end %>
+    </tbody>
+  </table>
+</div>

@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20151019211556) do
+ActiveRecord::Schema.define(version: 20151021223627) do
 
   create_table "comments", force: :cascade do |t|
     t.integer  "user_id"
@@ -68,7 +68,7 @@ ActiveRecord::Schema.define(version: 20151019211556) do
   create_table "wishes", force: :cascade do |t|
     t.integer "user_id"
     t.integer "product_id"
-    t.float   "total"
+    t.integer "total"
   end
 
   add_index "wishes", ["product_id"], name: "index_wishes_on_product_id"

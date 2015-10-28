@@ -10,14 +10,14 @@ Rails.application.routes.draw do
 
   post 'static_pages/thank_you'
 
-  resources :orders, only: [:index, :show, :new, :create]
+  resources :orders, only: [:index, :show, :create, :destroy]
 
   resources :users
 
   devise_for :users, :controllers => { :registrations => "my_devise/registrations" }, 
                      :path => '', :path_names => {:sign_in => 'login', :sign_out => 'logout', :sign_up => 'register'}
 
-  resources :wishes, only: [:index, :show, :new, :create, :update]
+  resources :wishes
 
   resources :products do
     resources :comments

@@ -1,0 +1,14 @@
+<tr>
+  <td class="field-label col-md-2 active">
+    <label><%= wish.product.name %></label>
+  </td>
+  <td class="col-md-3"><%= wish.product.description %></td>
+  <td class="col-md-1"><%= '%.2f' % (wish.product.amount/100.00) %></td>
+  <td class="col-md-1"><%= wish.total %></td>
+  <td class="col-md-2"><%= '%.2f' % ((wish.product.amount/100.00) * wish.total) %></td>
+  <%= form for(wish_path(wish), :html => { method: 'delete' }) do %>
+    <td><%= f.label(:i, "How many:") %></td>
+    <td><%= f.number_field(:i) %></td>
+    <td><%= f.submit :value => "Remove" %></td>
+  <% end %>
+</tr>
