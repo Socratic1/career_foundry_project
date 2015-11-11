@@ -45,6 +45,7 @@ class OrdersController < ApplicationController
             flash[:error] = "Unfortunately, there was an error processing your payment: #{err[:message]}"
         end
     
+        OrderMailer.order_confirmation(@order.product, @order.user.email, @order.user.first_name)
 
         respond_to do |format|
             if @order.save
