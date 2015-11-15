@@ -19,14 +19,6 @@
 		}
 	}
 
-	form,
-	.new_product {
-		width: 200px;
-		margin-left: auto; 
-		margin-right: auto;
-		margin-top: 40px;
-	}
-
 	p {
 		margin: 10px 10px 50px 273px;
 		a:hover, a:active, a:focus {
@@ -34,4 +26,8 @@
 		}	
 	}
 
+}
+
+.product_form {
+	display: block;	
 }

@@ -2,7 +2,13 @@
 
 	<h1>New Product</h1>
 
-	<%= render 'form' %>
+	<div class="product_form">
+		<%= render 'form' %>
+	</div>
 
-	<%= link_to 'Back', products_path %>
+	<div class="row">
+		<div class="col-md-offset-2">
+			<%= link_to 'Back', products_path %>
+		</div>
+	</div>
 </div>
