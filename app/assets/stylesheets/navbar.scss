@@ -1,16 +1,15 @@
-
 .navigation {
 	color: #888; 
-	height: 64px;
 	background-color: #161616;
 	letter-spacing: 1px;
-	padding: 20px 20px;
 	width: 100%;
+	height: 5em;
 
 	.nav_links {
 		position: relative;
 		display: inline-block;
-		top: 5px;
+		top: 40%;
+		left: 3%
 	}
 
 	p {
@@ -22,16 +21,15 @@
 	ul {
 		display: inline-block;
 		position: relative;
-		left: 50px;
+		left: 1.5em;
 	}
 
 	li {
 		display: inline-block;
-		position-top: 10px;
 	}
 
 	a {
-		margin-left: 10px;
+		margin-left: .8em;
 		color: #666;
 		&:hover {
 			text-decoration: none;
@@ -40,9 +38,11 @@
 	}
 
 	.search_products {
-		left: 350px;
+		float: right;
 		position: relative;
+		top: 35%;
+		right: 2em;
 		display: inline-block;
-		width: 350px
+		width: 25em;
 	}
 }
