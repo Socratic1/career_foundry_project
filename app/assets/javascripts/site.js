@@ -1,4 +1,10 @@
 $(document).on('ready', function(){
+
+	$('.search_toggle').click(function() {
+		$('.search').toggleClass("search_active");
+	});
+
+
 	$('.rating').raty( { path: '/assets', scoreName: 'comment[rating]' } );
 	$('.rated').raty({ path: '/assets',
 		readOnly: true,

@@ -21,10 +21,15 @@
 			<%= csrf_meta_tags %>
 		</ul>
 	</div>
-	
-		<%= form_tag("/products", method: "get", class: "search_products") do %>
+	<div class="search_toggle">
+		<p>Search <span class="caret"></span></p>
+	</div>
+</div>
+
+<div class="search">
+	<%= form_tag("/products", method: "get", class: "search_products") do %>
         	<%= label_tag(:q, "Search for:") %>
         	<%= text_field_tag(:q) %>
         	<%= submit_tag("Search") %>
-		<% end %>
+	<% end %>
 </div>

@@ -37,12 +37,31 @@
 		}
 	}
 
-	.search_products {
-		float: right;
+	.search_toggle {
 		position: relative;
-		top: 35%;
-		right: 2em;
-		display: inline-block;
-		width: 25em;
+		float: right;
+		right: 3em;
+		top: 40%;
+		p {
+			text-transform: capitalize;
+		}
 	}
+}
+
+.search {
+	color: #888; 
+	float: right;
+	position: absolute;
+	top: 1em;
+	right: 2em;
+	display: inline-block;
+	width: 25em;
+	z-index: -1;
+}
+
+.search_active {
+	top: 5em;
+	padding: 1em .5em;
+	background-color: #161616;
+	z-index: 0;
 }
