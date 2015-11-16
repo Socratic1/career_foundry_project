@@ -2,10 +2,12 @@
 	<div class="nav_links">
 		<p><%= link_to "Bike Leuven", root_path %></p>
 		<ul>
-			<li><%= link_to "Contact", static_pages_contact_path %></li>
+			<% if user_signed_in? %>
+				<li><%= link_to "Your Profile", user_path(current_user) %></li>
+			<% end %>
 			<li><%= link_to "Featured Products", static_pages_landing_page_path %></li>
-			<li><%= link_to "Add New Product", new_product_path %></li>
 			<li><%= link_to "See All Products", products_path %></li>
+			<li><%= link_to "Contact", static_pages_contact_path %></li>
 			<% if user_signed_in? %>
 				<li>
 					<%= link_to('Logout', destroy_user_session_path, :method => :delete) %>
@@ -16,6 +18,11 @@
 				</li>
 				<li>
 					<%= link_to('Sign Up', new_user_registration_path) %>
+				</li>
+			<% end %>
+			<% if user_signed_in? && current_user.admin == true %>
+				<li>
+					<%= link_to('All Users', users_path) %>
 				</li>
 			<% end %>
 			<%= csrf_meta_tags %>

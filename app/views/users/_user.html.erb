@@ -1,0 +1,15 @@
+<tr>
+  <td class="field-label col-md-2 active">
+    <label><%= link_to user.first_name + ' ' + user.last_name, user %></label>
+  </td>
+  <td class="col-md-2"><%= user.email %></td>
+  <td class="col-md-2">
+  	<% if user.admin == true %>
+  		Yes
+  	<% else %>
+  		No
+  	<% end %>
+  </td>
+  <td><%= link_to 'Edit', edit_user_path(user) %></td>
+  <td><%= link_to 'Destroy', user, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+</tr>
