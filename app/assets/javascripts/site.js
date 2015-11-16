@@ -1,4 +1,4 @@
-$(document).on('ready', function(){
+$(document).ready( function(){
 
 	$('.search_toggle').click(function() {
 		$('.search').toggleClass("search_active");

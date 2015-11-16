@@ -14,7 +14,6 @@
 //= require angular
 //= require angular-resource
 //= require jquery_ujs
-//= require turbolinks
 //= require jquery.raty
 //= require chosen.jquery.min
 //= require jquery.tagsinput
