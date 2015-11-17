@@ -140,6 +140,7 @@ h2 {
 }
 
 a:hover, a:active, a:focus {
+	color: #888;
 	text-decoration: none;
 	background-color: transparent;
 }

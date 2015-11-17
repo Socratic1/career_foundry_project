@@ -1,6 +1,10 @@
 $(document).ready( function(){
 
-	$('.search_toggle').click(function() {
+	$('.search_toggle').mouseenter(function(){
+		$(this).css('color', '#888');
+					 }).mouseleave(function(){
+		$(this).css('color', '#666');
+					 }).click(function() {
 		$('.search').toggleClass("search_active");
 	});
 

@@ -32,7 +32,7 @@
 </div>
 
 <div class="payment_button">
-  <%= form_tag("/payments", action: "create", method: "post") do %>
+  <%= form_tag('/payments/new', method: 'get') do %>
     <%= render partial: "shared/stripe_checkout_button" %>
     <%= hidden_field_tag :product_id, @product.id %>
   <% end %>
