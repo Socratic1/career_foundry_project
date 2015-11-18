@@ -19,7 +19,9 @@ class OrdersController < ApplicationController
 
     def create
         @order = Order.create(:order_params)
-    
+        @order.product = Product.find(params[:product_id])
+        @order.user = User.find(params[:user_id])  
+          
         OrderMailer.order_confirmation(@order.product, @order.user.email, @order.user.first_name)
 
         respond_with @order
