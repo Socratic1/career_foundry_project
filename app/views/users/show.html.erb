@@ -28,15 +28,19 @@
 <div class="users_following">
     <p>
         <strong>Following:</strong>
-        <% for user in @following %>
-            <%= user.email %>
-        <% end %>
+        <ul>
+            <% for user in @following %>
+                <li><%= user.email %></li>
+            <% end %>
+        </ul>
     </p>
     <p>
         <strong>Followed by:</strong>
-        <% for user in @followers %>
-            <%= user.email %>
-        <% end %>
+        <ul>
+            <% for user in @followers %>
+                <li><%= user.email %></li>
+            <% end %>
+        </ul>
     </p>
 </div>
 
