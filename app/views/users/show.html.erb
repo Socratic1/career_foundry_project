@@ -3,12 +3,20 @@
 <div class="user_info">
     <p>
         <strong>First name:</strong>
-        <%= @user.first_name %>
+        <% if @user.first_name != nil %>
+            <%= @user.first_name %>
+        <% else %>
+            No value provided
+        <% end %>
     </p>
 
     <p>
         <strong>Last name:</strong>
-        <%= @user.last_name %>
+        <% if @user.last_name != nil %>
+            <%= @user.last_name %>
+        <% else %>
+            No value provided
+        <% end %>
     </p>
 
     <p>
@@ -21,13 +29,13 @@
     <p>
         <strong>Following:</strong>
         <% for user in @following %>
-            <%= user.first_name + ' ' + user.last_name %>
+            <%= user.email %>
         <% end %>
     </p>
     <p>
         <strong>Followed by:</strong>
         <% for user in @followers %>
-            <%= user.first_name + ' ' + user.last_name %>
+            <%= user.email %>
         <% end %>
     </p>
 </div>
