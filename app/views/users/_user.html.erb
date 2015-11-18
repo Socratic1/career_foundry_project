@@ -1,6 +1,6 @@
 <tr>
   <td class="field-label col-md-2 active">
-    <% if defined?(user.first_name) && defined?(user.last_name) %>
+    <% if user.first_name == true && user.last_name == true %>
       <label><%= link_to user.first_name + ' ' + user.last_name, user %></label>
     <% else %>
       <label><%= link_to 'No name provided', user %></label>
