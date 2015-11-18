@@ -25,6 +25,12 @@
 					</select>
 				</td>
 				<td>
+					<select ng-model="newOrder.user_id" class="form-control">
+						<option value="" disabled selected>Select a user</option>
+						<option ng-repeat="user in users" value="{{user.id}}">{{user.name}}</option>
+					</select>
+				</td>
+				<td>
 					<input type="submit" value="+" class="btn btn-success">
 				</td>
 			</form>
@@ -38,7 +44,9 @@
 			</td>
 			<td>
 				{{order.product.name}}
-				<small ng-show="order.user_id"><br>-{{order.user.email}}</small>
+			</td>
+			<td>
+				{{order.user.email}}
 			</td>
 			<td>
 				<button ng-click="deleteOrder(order)" class="btn btn-danger btn-sm"><span class="glyphicon glyphicon-trash" aria-hidden="true"></span></button>
