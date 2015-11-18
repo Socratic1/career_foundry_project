@@ -12,6 +12,12 @@ class UsersController < ApplicationController
   # GET /users/1.json
   def show
     @following = @user.following
+    @followers = @user.followers
+  end
+
+  def follow!
+    current_user.follow!(@user)
+    redirect_to @user
   end
 
   # GET /users/new

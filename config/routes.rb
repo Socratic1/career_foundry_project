@@ -12,6 +12,7 @@ Rails.application.routes.draw do
 
   resources :orders, only: [:new, :index, :show, :create, :destroy]
 
+  get 'users/follow' => 'users#follow!'
   resources :users
 
   devise_for :users, :controllers => { :registrations => "my_devise/registrations" }, 

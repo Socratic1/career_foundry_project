@@ -24,7 +24,19 @@
             <%= user.first_name + ' ' + user.last_name %>
         <% end %>
     </p>
+    <p>
+        <strong>Followed by:</strong>
+        <% for user in @followers %>
+            <%= user.first_name + ' ' + user.last_name %>
+        <% end %>
+    </p>
 </div>
+
+<% if @user != current_user %>
+    <div class="follow">
+        <%= link_to 'Follow', users_follow_path(id: @user.id) %>
+    </div>
+<% end %>
 
 <%= link_to 'Edit', edit_user_registration_path(@user) %> |
 <%= link_to 'Back', users_path %>
